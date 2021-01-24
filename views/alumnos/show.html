@@ -1,0 +1,128 @@
+{{extend 'layout.html'}}
+<style type="text/css">
+table {
+	border-collapse: collapse;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+table td {
+	padding: 15px;
+}
+table thead td {
+	background-color: #54585d;
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 17px;
+	border: 1px solid #54585d;
+}
+table tbody td {
+	color: #636363;
+	border: 1px solid #dddfe1;
+}
+table tbody tr {
+	background-color: #f9fafb;
+}
+table tbody tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+  </style>
+
+<center> <h5>Ficha de Alumno</h5></center>
+<br>
+<center>
+<div class="table-responsive">
+<TABLE border="2" class="table">
+<thead>
+<TR>
+   <td colspan="4"><center>{{=alumno.nombre}}</center></td>
+
+</TR>
+</thead>
+<tbody >
+
+<TR>
+   <td>RUT</td>
+   <td>{{=alumno.rut}}</td>
+   
+   <td>Curso</td>
+{{curso=db(db.curso.id==alumno.curso).select().first()}}
+   <td>{{=curso.nombre}}</td>
+</TR> 
+<TR>
+   <td>Diagnostico</td>
+ <td>
+{{for numero in alumno.diagnostico:}}
+{{usuario=db(db.diagnostico.id==numero).select().first()}}
+{{imprimir= usuario.nombre}}
+{{=imprimir}}
+{{pass}}
+  </td>
+   
+   <td>Fecha de nacmiento</td>
+   <td>{{=alumno.fecha_nacimiento}}</td>
+</TR> 
+<TR>
+   <td>Direccion</td>
+   <td>{{=alumno.direccion}}</td>
+   
+   <td>Telefono</td>
+   <td>{{=alumno.telefono}}</td>
+</TR> 
+<TR>
+   <td>Apoderado</td>
+   <td>{{=alumno.apoderado}}</td>
+   
+   <td>Tel. apoderado</td>
+   <td>{{=alumno.telefono_apoderado}}</td>
+</TR> 
+<TR>
+  
+   <td colspan="2">Encargado</td>
+<td colspan="2">
+{{try:}}
+{{=alumno.encargado.first_name}} {{=alumno.encargado.last_name}}
+{{except:}}
+Sin Encargado
+{{pass}}
+</td>
+
+</TR> 
+<TR>
+<td colspan="4"><center>Notas sobre el alumno</center></td>
+
+</TR> 
+    <TR>
+<td colspan="4">{{alumno.notas}}</td>
+
+</TR>
+</tbody>
+</TABLE>
+</div>
+</center>
+
+<center>
+<div class="table-responsive">
+<TABLE border="2" class="table">
+<thead>
+<TR>
+   <td>Fecha</td>
+   <td>Descripcion</td>
+   <td>Estado</td>
+   <td>Encargado</td>
+
+</TR>
+</thead>
+<tbody >
+{{for registro in registros:}}
+
+<TR>
+   <td>{{=registro.fecha}}</td>
+    <td>{{=registro.descripcion}}</td>
+   <td>{{=registro.estado}}</td>
+   <td>{{=registro.encargado.first_name}} {{=registro.encargado.last_name}}</td>
+
+</TR>
+{{pass}}
+</tbody>
+</TABLE>
+</div>
+</center>

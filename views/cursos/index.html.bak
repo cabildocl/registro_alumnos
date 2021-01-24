@@ -1,0 +1,56 @@
+{{extend 'layout.html'}}
+<style type="text/css">
+table {
+	border-collapse: collapse;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+table td {
+}
+table thead td {
+	background-color: #54585d;
+	color: #ffffff;
+	font-weight: bold;
+	border: 1px solid #54585d;
+}
+table tbody td {
+	color: #636363;
+	border: 1px solid #dddfe1;
+}
+table tbody tr {
+	background-color: #f9fafb;
+}
+table tbody tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+  </style>
+<div class="table-responsive">
+<table align="center" border=1 cellspacing=0 class="table">
+<thead>
+<tr>
+<td>
+Nombre
+</td>
+<td>
+Descripcion</td>
+<td>
+Editar
+</td>
+</tr>
+</thead>
+<tbody>
+{{for curso in lista:}}
+<tr>
+<td>
+{{=curso.nombre}}  
+</td>
+<td>
+{{=curso.descripcion}}  
+</td>
+<td>
+{{=A("Editar", _href=URL('alumnos','editar', args=alumno.id))}}
+</td>
+</tr>
+</tbody>
+{{pass}}
+</table>
+</div>

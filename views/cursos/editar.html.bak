@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h3>Formulario de Curso</h3>
+{{=form}}

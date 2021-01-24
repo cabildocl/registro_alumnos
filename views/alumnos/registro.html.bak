@@ -1,0 +1,72 @@
+{{extend 'layout.html'}}
+<style type="text/css">
+table {
+	border-collapse: collapse;
+    font-family: Tahoma, Geneva, sans-serif;
+}
+table td {
+}
+table thead td {
+	background-color: #54585d;
+	color: #ffffff;
+	font-weight: bold;
+	border: 1px solid #54585d;
+}
+table tbody td {
+	color: #636363;
+	border: 1px solid #dddfe1;
+}
+table tbody tr {
+	background-color: #f9fafb;
+}
+table tbody tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+  </style>
+<div class="table-responsive">
+<table align="center" border=1 cellspacing=0 class="table">
+<thead>
+<tr>
+<td>
+Fecha
+</td>
+<td>
+Alumno
+</td>
+<td>
+Descripcion
+</td>
+<td>
+Estado
+</td>
+<td>
+Encargado
+</td>
+</tr>
+</thead>
+<tbody>
+{{for registra in lista:}}
+<tr>
+<td>
+{{=registra.fecha}}
+</td>
+<td>
+{{=A(registra.alumno_id.nombre, _href=URL('alumnos','show', args=registra.alumno_id))}}
+</td>
+<td>
+{{=registra.descripcion}}
+ 
+</td>
+<td>
+{{=registra.estado}}
+
+</td>
+
+<td>
+{{=registra.encargado.first_name}}  {{=registra.encargado.last_name}}
+</td>
+{{pass}}
+</tr>
+</tbody>
+</table>
+</div>
